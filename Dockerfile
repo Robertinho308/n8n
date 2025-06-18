@@ -1,16 +1,17 @@
-FROM n8nio/n8n
+FROM n8nio/n8n:latest
 
-# Ativando autenticação por usuário e senha
+# Ativa autenticação
 ENV N8N_BASIC_AUTH_ACTIVE=true
-ENV N8N_BASIC_AUTH_USER=automactiones
-ENV N8N_BASIC_AUTH_PASSWORD=Robertinho.308
+ENV N8N_BASIC_AUTH_USER=admin
+ENV N8N_BASIC_AUTH_PASSWORD=senha-forte-aqui
 
-# Configuração básica do servidor
+# Configuração de host e porta
 ENV N8N_HOST=0.0.0.0
 ENV N8N_PORT=5678
-ENV WEBHOOK_TUNNEL_URL=https://n8n.onrender.com
+ENV WEBHOOK_TUNNEL_URL=https://n8n-server.onrender.com
 
+# Expõe a porta padrão do n8n
 EXPOSE 5678
 
-# Comando de inicialização
-CMD ["n8n"]
+# Inicia o n8n corretamente (comando embutido na imagem)
+CMD ["tini", "--", "n8n"]
